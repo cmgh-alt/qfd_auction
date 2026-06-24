@@ -1,16 +1,43 @@
 export interface Product {
-  id: number;
-  name: string;
-  description: string;
-  condition: 'Excellent' | 'Good' | 'Fair';
-  lotNumber: string;
+    id: number;
+    name: string;
+    description: string;
+    condition: 'Excellent' | 'Good' | 'Fair';
+    price?: string;
+    lotNumber: string;
+    imagePaths?: string[];
+    isSold?: boolean;
+    quantity?: number,
 }
 
 export interface Category {
-  id: string;
-  label: string;
-  products: Product[];
+    id: string;
+    label: string;
+    products: Product[];
 }
+
+import sofabed1 from '../assets/SofaBed1.jpg';
+import sofabed2 from '../assets/SofaBed2.jpg';
+import sofabed3 from '../assets/SofaBed3.jpg';
+
+import kebabmachine1 from '../assets/KebabMachine.jpg';
+import kebabmachine2 from '../assets/KebabMachine2.jpg';
+import kebabmachine3 from '../assets/KebabMachine3.jpg';
+
+import mattress1 from '../assets/Mattress1.jpg';
+import mattress2 from '../assets/Mattress2.jpg';
+
+import wallunit from '../assets/WallUnit.jpg';
+import wallunit2 from '../assets/WallUnit2.jpg';
+
+import mattress_suspension from '../assets/MattressSuspension.jpg';
+
+import tp from '../assets/ToiletPaper.jpg';
+import tp2 from '../assets/ToiletPaper2.jpg';
+
+import th1 from '../assets/thermal.jpg';
+import th2 from '../assets/thermal2.jpg';
+import th3 from '../assets/thermal3.jpg';
 
 export const categories: Category[] = [
   {
@@ -18,18 +45,12 @@ export const categories: Category[] = [
     label: 'Appliances',
     products: [
       {
-        id: 1,
-        name: 'Commercial Refrigerator',
-        description: 'Stainless steel double-door reach-in refrigerator, 49 cu ft capacity. Previously used in restaurant service.',
-        condition: 'Good',
-        lotNumber: 'A-001',
-      },
-      {
         id: 2,
         name: 'Industrial Dishwasher',
         description: 'High-capacity conveyor dishwasher, 300 racks/hr throughput. Includes chemical dosing system.',
         condition: 'Good',
         lotNumber: 'A-002',
+        isSold: true,
       },
       {
         id: 3,
@@ -97,95 +118,87 @@ export const categories: Category[] = [
   },
   {
     id: 'equipment',
-    label: 'Equipment',
+    label: 'Restauraunt Equipment and Supplies',
     products: [
       {
         id: 11,
-        name: 'Air Compressor (60 Gal)',
-        description: '60-gallon vertical air compressor, 5 HP, 175 PSI max, single-stage cast iron pump.',
+        name: 'Kebab Machine',
+        description: 'Kebab Machine desc.',
         condition: 'Good',
         lotNumber: 'E-001',
-      },
-      {
-        id: 12,
-        name: 'MIG Welder',
-        description: 'Lincoln Electric 210 MP multi-process welder. MIG, flux-core, stick, and DC TIG capable.',
-        condition: 'Excellent',
-        lotNumber: 'E-002',
-      },
-      {
-        id: 13,
-        name: 'Pressure Washer (4000 PSI)',
-        description: 'Gas-powered cold water pressure washer with 50 ft hose, 4 GPM flow rate.',
-        condition: 'Good',
-        lotNumber: 'E-003',
-      },
-      {
-        id: 14,
-        name: 'Generator (12,000W)',
-        description: 'Dual-fuel portable generator, 12,000 peak watts, runs on gasoline or propane.',
-        condition: 'Good',
-        lotNumber: 'E-004',
-      },
-      {
-        id: 15,
-        name: 'Plasma Cutter',
-        description: 'Hypertherm Powermax45 plasma cutter, cuts up to 5/8" steel. Includes leads and consumables.',
-        condition: 'Excellent',
-        lotNumber: 'E-005',
+        imagePaths: [kebabmachine1, kebabmachine2, kebabmachine3],
       },
     ],
   },
   {
-    id: 'machinery',
-    label: 'Machinery',
+    id: 'furniture',
+    label: 'Furniture',
     products: [
       {
-        id: 16,
-        name: 'Metal Lathe (14" x 40")',
-        description: 'South Bend metal lathe with 14" swing, 40" bed, variable speed, and 3-jaw chuck.',
+        id: 1,
+        name: 'Sofa Bed',
+        description: 'Grey ( put dimensions here ) sofa-bed',
         condition: 'Good',
-        lotNumber: 'M-001',
+        lotNumber: 'A-001',
+        price: '$100',
+        isSold: false,
+        imagePaths: [sofabed1, sofabed2, sofabed3],
+      },
+      {
+        id: 2,
+        name: 'Brand1 Mattress',
+        description: 'Matress 1',
+        condition: 'Excellent',
+        lotNumber: 'F-002',
+        price: '$100',
+        quantity: 2,
+        imagePaths: [mattress1],
+        isSold: false,
+      },
+      {
+        id: 3,
+        name: 'Brand2 Mattress',
+        description: 'Mattress 2',
+        condition: 'Excellent',
+        lotNumber: 'F-003',
+        price: '$100',
+        quantity: 2,
+        imagePaths: [mattress2],
+        isSold: false,
       },
       {
         id: 17,
-        name: 'Vertical Milling Machine',
-        description: 'Bridgeport J-Head vertical mill, 1 HP, 9" x 42" table, DRO included.',
+        name: '4-Piece Wall Unit',
+        description: 'Ethan Allen 4-Piece Wall Unit',
         condition: 'Fair',
-        lotNumber: 'M-002',
+        isSold: false,
+        price: '$100',
+        imagePaths: [wallunit, wallunit2],
+        lotNumber: 'F-002',
       },
       {
         id: 18,
-        name: 'CNC Plasma Cutting Table',
-        description: '4ft x 8ft CNC plasma table with THC controller, water tray, and software license.',
-        condition: 'Good',
-        lotNumber: 'M-003',
-      },
-      {
-        id: 19,
-        name: 'Hydraulic Press (20-Ton)',
-        description: 'H-frame hydraulic shop press with gauge, adjustable working height, and press plates.',
-        condition: 'Excellent',
-        lotNumber: 'M-004',
-      },
-      {
-        id: 20,
-        name: 'Band Saw (Industrial)',
-        description: 'DoAll 16" industrial vertical band saw, 1.5 HP, with blade welder and tension guide.',
-        condition: 'Good',
-        lotNumber: 'M-005',
+        name: 'Mattress Suspension',
+        description: 'Bedgear Independent Suspension',
+        condition: 'Fair',
+        isSold: false,
+        imagePaths: [mattress_suspension],
+        price: '$100',
+        lotNumber: 'F-002',
       },
     ],
   },
   {
-    id: 'business-equipment',
-    label: 'Business Equipment',
+    id: 'Industrial',
+    label: 'Industrial',
     products: [
       {
         id: 21,
-        name: 'Office Workstation Lot (10 Units)',
-        description: 'Dell OptiPlex desktops with 24" monitors, keyboards, and mice. Windows 11 Pro installed.',
+        name: 'Loading Dock and Seal',
+        description: 'Docking guard and seel that effectively guards against high wind, outside rain, snow, heat, cold, brids, mice & other pests.',
         condition: 'Good',
+        isSold: false,
+        price: '$100',
         lotNumber: 'B-001',
       },
       {
@@ -215,6 +228,32 @@ export const categories: Category[] = [
         description: '42U server rack with dual Dell PowerEdge R740 servers, patch panel, and KVM switch.',
         condition: 'Fair',
         lotNumber: 'B-005',
+      },
+    ],
+  },
+  {
+    id: 'misc',
+    label: 'Office and Janitorial Supplies',
+    products: [
+      {
+        id: 6,
+        name: 'Bath Tissue (Royalty Premier)',
+        description: '96 rolls, 500 sheets (2 ply)',
+        condition: 'Excellent',
+        lotNumber: 'MISC-001',
+        quantity: 3,
+        isSold: false,
+        imagePaths: [tp, tp2],
+      },
+      {
+        id: 6,
+        name: 'Thermal Label',
+        description: 'thermal label desc',
+        condition: 'Excellent',
+        lotNumber: 'MISC-002',
+        imagePaths: [th1, th2, th3],
+        quantity: 100,
+        isSold: false,
       },
     ],
   },

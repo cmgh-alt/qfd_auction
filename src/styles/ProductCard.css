@@ -13,6 +13,10 @@
   transform: translateY(-2px);
 }
 
+.product-card--clickable {
+  cursor: pointer;
+}
+
 .product-card__image-placeholder {
   background-color: #e8e8e8;
   height: 160px;
@@ -23,15 +27,25 @@
   position: relative;
 }
 
+.product-card__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .product-card__lot {
   font-size: 0.72rem;
   font-weight: 600;
-  color: #555;
-  background-color: rgba(255, 255, 255, 0.85);
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 0.2rem 0.5rem;
   border-radius: 3px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  position: relative;
+  z-index: 1;
 }
 
 .product-card__body {
@@ -58,6 +72,70 @@
   flex: 1;
 }
 
+.product-card--sold {
+  opacity: 0.6;
+}
+
+.product-card__sold-banner {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: #c0392b;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 3px;
+}
+
+.product-card__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  width: 28px;
+  height: 36px;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.15s;
+  z-index: 1;
+}
+
+.product-card__nav:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.product-card__nav--prev {
+  left: 0.4rem;
+}
+
+.product-card__nav--next {
+  right: 0.4rem;
+}
+
+.product-card__image-count {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  z-index: 1;
+}
+
 .product-card__badge {
   display: inline-block;
   font-size: 0.72rem;
@@ -66,8 +144,30 @@
   letter-spacing: 0.05em;
   padding: 0.2rem 0.55rem;
   border-radius: 3px;
-  align-self: flex-start;
+}
+
+.product-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-top: auto;
+}
+
+.product-card__footer-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.product-card__quantity {
+  font-size: 0.78rem;
+  color: #555;
+}
+
+.product-card__price {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a1a1a;
 }
 
 .badge--excellent {

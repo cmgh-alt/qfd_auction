@@ -1,4 +1,5 @@
 import { categories } from '../data/products';
+import logo from '../assets/logo.png';
 import '../styles/SplashPage.css';
 
 interface Props {
@@ -18,9 +19,8 @@ export default function SplashPage({ onEnter }: Props) {
       <div className="splash__left">
         <div className="splash__brand">
           <div className="splash__logo-placeholder">
-            <span className="splash__logo-text">Q</span>
+            <img src={logo} alt="Quality logo" className="splash__logo-img" />
           </div>
-          <h1 className="splash__company">Quality</h1>
           <p className="splash__tagline">New &amp; Used Items</p>
           <p className="splash__tagline">Contact Mago Espinoza</p>
         </div>

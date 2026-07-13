@@ -10,9 +10,16 @@ interface Props {
 
 export default function ImageViewer({ images, initialIndex = 0, productName, onClose }: Props) {
   const [current, setCurrent] = useState(initialIndex);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
-  const prev = () => setCurrent((i) => (i - 1 + images.length) % images.length);
-  const next = () => setCurrent((i) => (i + 1) % images.length);
+  const prev = () => {
+    setCurrent((i) => (i - 1 + images.length) % images.length);
+    setImageLoaded(false);
+  };
+  const next = () => {
+    setCurrent((i) => (i + 1) % images.length);
+    setImageLoaded(false);
+  };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -28,10 +35,15 @@ export default function ImageViewer({ images, initialIndex = 0, productName, onC
     <div className="image-viewer__overlay" onClick={onClose}>
       <div className="image-viewer__container" onClick={(e) => e.stopPropagation()}>
         <button className="image-viewer__close" onClick={onClose}>&#10005;</button>
+        {!imageLoaded && (
+          <div className="image-viewer__loader">Loading...</div>
+        )}
         <img
           src={images[current]}
           alt={`${productName} ${current + 1}`}
           className="image-viewer__image"
+          onLoad={() => setImageLoaded(true)}
+          style={{ display: imageLoaded ? 'block' : 'none' }}
         />
         {images.length > 1 && (
           <>

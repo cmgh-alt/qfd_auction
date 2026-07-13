@@ -15,38 +15,48 @@ const conditionClass: Record<Product['condition'], string> = {
 
 export default function ProductCard({ product }: Props) {
   const images = product.imagePaths ?? [];
+  const thumbnails = product.thumbnailPaths ?? images;
   const [current, setCurrent] = useState(0);
   const [viewerOpen, setViewerOpen] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const prev = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrent((i) => (i - 1 + images.length) % images.length);
+    setCurrent((i) => (i - 1 + thumbnails.length) % thumbnails.length);
+    setImageLoaded(false);
   };
 
   const next = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrent((i) => (i + 1) % images.length);
+    setCurrent((i) => (i + 1) % thumbnails.length);
+    setImageLoaded(false);
   };
 
   return (
     <>
       <div
-        className={`product-card${product.isSold ? ' product-card--sold' : ''}${images.length > 0 ? ' product-card--clickable' : ''}`}
-        onClick={() => images.length > 0 && setViewerOpen(true)}
+        className={`product-card${product.isSold ? ' product-card--sold' : ''}${thumbnails.length > 0 ? ' product-card--clickable' : ''}`}
+        onClick={() => thumbnails.length > 0 && setViewerOpen(true)}
       >
         <div className="product-card__image-placeholder">
-          {images.length > 0 ? (
+          {thumbnails.length > 0 ? (
             <>
+              {!imageLoaded && (
+                <div className="product-card__loader">Loading...</div>
+              )}
               <img
-                src={images[current]}
+                src={thumbnails[current]}
                 alt={`${product.name} ${current + 1}`}
                 className="product-card__image"
+                loading="lazy"
+                onLoad={() => setImageLoaded(true)}
+                style={{ display: imageLoaded ? 'block' : 'none' }}
               />
-              {images.length > 1 && (
+              {thumbnails.length > 1 && (
                 <>
                   <button className="product-card__nav product-card__nav--prev" onClick={prev}>&#8249;</button>
                   <button className="product-card__nav product-card__nav--next" onClick={next}>&#8250;</button>
-                  <span className="product-card__image-count">{current + 1} / {images.length}</span>
+                  <span className="product-card__image-count">{current + 1} / {thumbnails.length}</span>
                 </>
               )}
             </>

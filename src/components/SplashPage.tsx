@@ -9,7 +9,10 @@ interface Props {
 const previewImages = categories
   .flatMap((c) => c.products)
   .filter((p) => p.imagePaths && p.imagePaths.length > 0)
-  .map((p) => ({ src: p.imagePaths![0], name: p.name }));
+  .map((p) => ({ 
+    src: p.thumbnailPaths?.[0] ?? p.imagePaths![0], 
+    name: p.name 
+  }));
 
 export default function SplashPage({ onEnter }: Props) {
   return (
